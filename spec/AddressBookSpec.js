@@ -10,4 +10,17 @@ describe('Address Book', function() { //suite
 //parem (getContact) ja vasak pool('thisContact') peavad olema samaväärsed; 		
             expect(addressBook.getContact(0)).toBe(thisContact);
     });
+//kirjeldame it-meetodiga uue spec-i 
+//'delete a contact' funktsiooni jaoks
+    it('should be able to delete a contact', function() {
+//kasutame eelpool defineeritud muutujaid
+        var addressBook = new AddressBook(),
+            thisContact = new Contact();
+//lisame kontakti, et saaks seda kustutada ja kustutame
+        addressBook.addContact(thisContact);
+        addressBook.deleteContact(0);
+//testime: kui saan esimese kontakti aadressraamatust, 
+// eeldan, et pärast kustutamist seda objekti ei eksisteeri
+        expect(addressBook.getContact(0)).not.toBeDefined();
+    });
 });

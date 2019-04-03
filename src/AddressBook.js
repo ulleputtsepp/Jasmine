@@ -12,3 +12,8 @@ AddressBook.prototype.addContact = function(contact) {
 AddressBook.prototype.getContact = function(index) {
     return this.contacts[index];
 }
+//kontakti kustutamine, eemladame massiivist elemendi 
+//(splice() method to change the contents of an array)
+AddressBook.prototype.deleteContact = function(index) {
+    return this.contacts.splice(index, 1);
+}
