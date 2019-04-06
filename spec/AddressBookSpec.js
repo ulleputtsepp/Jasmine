@@ -1,8 +1,17 @@
 //loome juhtumi testimaks kontakte aadressraamatus
 describe('Address Book', function() { //suite
+    //toome ühesugused muutujad spec-idest välja, rakenduvad üle-suite nüüd
+    var addressBook,
+        thisContact;
+
+    //kirjutame üldise funktsiooni, millega
+    beforeEach(function() {
+        //enne iga testi kutsutakse välja aadressraamatu ja kontakti objektid
+        addressBook = new AddressBook();
+        thisContact = new Contact();
+    });
+
     it('should be able to add a contact', function() { //spec
-            var addressBook = new AddressBook(), //new object
-                thisContact = new Contact(); //new object
 //'add contact' meetod eeldab vastavat kontaktide lisamise funktsiooni failis AddressBook 
 //thisContact objekt kutsutakse välja
             addressBook.addContact(thisContact);
@@ -14,8 +23,6 @@ describe('Address Book', function() { //suite
 //'delete a contact' funktsiooni jaoks
     it('should be able to delete a contact', function() {
 //kasutame eelpool defineeritud muutujaid
-        var addressBook = new AddressBook(),
-            thisContact = new Contact();
 //lisame kontakti, et saaks seda kustutada ja kustutame
         addressBook.addContact(thisContact);
         addressBook.deleteContact(0);
@@ -24,3 +31,7 @@ describe('Address Book', function() { //suite
         expect(addressBook.getContact(0)).not.toBeDefined();
     });
 });
+
+
+//inner scopes have access to variables declared in outer scopes
+//all specs have access to the variables defined in outer scope 
