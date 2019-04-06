@@ -32,6 +32,32 @@ describe('Address Book', function() { //suite
     });
 });
 
+//kirjutame uue, asünkroonse test-suite, et testida 
+//algsete kontaktide kättesaamist - asünkroonset fn-i
+describe('Async Address Book', function() {
+    //kutsume muutuja
+    var addressBook = new AddressBook();
+    
+    //et test-expectation alustaks pärast asünk-funktsiooni lõppu,
+    //kasutame beforeEach ja done-funktsiooni, mis teatab
+    //raamistikule, kui asünk funktsioon jõudis lõpuni
+    beforeEach(function(done) {
+        addressBook.getInitialContacts(function() {
+            //kutsume done-funktsiooni välja
+            done();
+        });
+    });
+
+    it('should grab initial contacts', function(done) { //spec   
+        //algsed kontaktid kätte saadud,
+        expect(addressBook.initialComplete).toBe(true);
+        //kutsume välja done-funktsiooni
+        done();
+    });
+});
+
+
+
 
 //inner scopes have access to variables declared in outer scopes
 //all specs have access to the variables defined in outer scope 
